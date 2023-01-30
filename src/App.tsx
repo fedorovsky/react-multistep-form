@@ -4,10 +4,11 @@ import { Route, NavLink, Routes } from 'react-router-dom';
 import Home from 'components/routes/Home';
 import Users from 'components/routes/Users';
 import NoMatch from 'components/routes/NoMatch';
+import { MultistepForm } from './app/multistep-form';
+import FormSwitcher from './components/FormSwitcher';
 
 const App: React.FC = () => (
   <div>
-    <img src={`${process.env.PUBLIC_URL}/logo192.png`} alt="alt" />
     <div>
       <NavLink
         to="/"
@@ -31,6 +32,8 @@ const App: React.FC = () => (
       </Routes>
     </div>
     <UserList />
+    <FormSwitcher />
+    <MultistepForm />
   </div>
 );
 
