@@ -36,7 +36,7 @@
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
-  "homepage": "https://fedorovsky.github.io/react-typescript-cra/",
+  "homepage": "https://fedorovsky.github.io/react-multistep-form/",
   "browserslist": {
     "production": [
       ">0.2%",
