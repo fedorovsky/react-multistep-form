@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/react-typescript-cra/static/js/main.5dd83709.js",
+    "index.html": "/react-typescript-cra/index.html",
+    "main.5dd83709.js.map": "/react-typescript-cra/static/js/main.5dd83709.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.5dd83709.js"
+  ]
+}
