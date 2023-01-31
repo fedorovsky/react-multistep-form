@@ -2,14 +2,14 @@ import * as React from 'react';
 import useAppSelector from 'hooks/useAppSelector';
 import { multistepSelectors, Page } from '../../redux';
 import * as Styled from './Root.styled';
-import Login from '../Login';
-import Register from '../Register';
-import Empty from '../Empty';
+import PageLogin from '../PageLogin';
+import PageRegister from '../PageRegister';
+import PageEmpty from '../PageEmpty';
 
 const PageMap = {
-  [Page.Empty]: <Empty />,
-  [Page.Login]: <Login />,
-  [Page.Register]: <Register />,
+  [Page.Empty]: <PageEmpty />,
+  [Page.Login]: <PageLogin />,
+  [Page.Register]: <PageRegister />,
 };
 
 const Root = () => {
