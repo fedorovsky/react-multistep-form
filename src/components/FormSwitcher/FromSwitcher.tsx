@@ -1,15 +1,19 @@
 import * as React from 'react';
 import useAppDispatch from 'hooks/useAppDispatch';
-import { multistepActions } from 'app/multistep-form';
+import { multistepActions, Page } from 'app/multistep-form';
 
 const FormSwitcher = () => {
   const dispatch = useAppDispatch();
 
   const handleClickLogin = () => {
-    dispatch(multistepActions.setType('login'));
+    dispatch(multistepActions.setPage(Page.Login));
   };
   const handleClickRegister = () => {
-    dispatch(multistepActions.setType('register'));
+    dispatch(multistepActions.setPage(Page.Register));
+  };
+
+  const handleClickEmpty = () => {
+    dispatch(multistepActions.setPage(Page.Empty));
   };
 
   return (
@@ -19,6 +23,9 @@ const FormSwitcher = () => {
       </button>
       <button type="button" onClick={handleClickRegister}>
         Register
+      </button>
+      <button type="button" onClick={handleClickEmpty}>
+        Empty
       </button>
     </div>
   );

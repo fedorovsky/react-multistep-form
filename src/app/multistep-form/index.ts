@@ -1,4 +1,15 @@
 import Root from './components/Root';
-import { multistepReducer, multistepActions } from './redux';
+import {
+  multistepReducer,
+  multistepActions,
+  multistepSelectors,
+  Page,
+} from './redux';
 
-export { Root as MultistepForm, multistepReducer, multistepActions };
+export {
+  Root as MultistepForm,
+  multistepReducer,
+  multistepActions,
+  multistepSelectors,
+  Page,
+};

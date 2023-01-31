@@ -2,29 +2,35 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
 import { RootState } from 'store';
 
+export enum Page {
+  Empty = 'Empty',
+  Login = 'Login',
+  Register = 'Register',
+}
+
 export interface Multistep {
-  readonly type: string;
+  readonly page: Page;
 }
 
 const initialState: Multistep = {
-  type: 'initial',
+  page: Page.Empty,
 };
 
 const multistepFormSlice = createSlice({
   name: 'multistep',
   initialState,
   reducers: {
-    setType: (state, action: PayloadAction<string>) => {
-      state.type = action.payload;
+    setPage: (state, action: PayloadAction<Page>) => {
+      state.page = action.payload;
     },
   },
 });
 
 export const stateSelector = (state: RootState): Multistep => state.multistep;
-export const typeSelector = createSelector(
-  stateSelector,
-  (state) => state.type,
-);
+
+export const multistepSelectors = {
+  page: createSelector(stateSelector, (state) => state.page),
+};
 
 export const multistepActions = multistepFormSlice.actions;
 export const multistepReducer = multistepFormSlice.reducer;
