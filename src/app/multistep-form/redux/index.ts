@@ -8,12 +8,21 @@ export enum Page {
   Register = 'Register',
 }
 
+export enum Step {
+  Empty = 'Empty',
+  Nickname = 'Nickname',
+  Email = 'Email',
+  Password = 'Password',
+}
+
 export interface Multistep {
   readonly page: Page;
+  readonly step: Step;
 }
 
 const initialState: Multistep = {
-  page: Page.Empty,
+  page: Page.Login,
+  step: Step.Nickname,
 };
 
 const multistepFormSlice = createSlice({
@@ -23,6 +32,9 @@ const multistepFormSlice = createSlice({
     setPage: (state, action: PayloadAction<Page>) => {
       state.page = action.payload;
     },
+    setStep: (state, action: PayloadAction<Step>) => {
+      state.step = action.payload;
+    },
   },
 });
 
@@ -30,6 +42,7 @@ export const stateSelector = (state: RootState): Multistep => state.multistep;
 
 export const multistepSelectors = {
   page: createSelector(stateSelector, (state) => state.page),
+  step: createSelector(stateSelector, (state) => state.step),
 };
 
 export const multistepActions = multistepFormSlice.actions;

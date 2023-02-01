@@ -4,6 +4,7 @@ import {
   multistepActions,
   multistepSelectors,
   Page,
+  Step,
 } from './redux';
 
 export {
@@ -12,4 +13,5 @@ export {
   multistepActions,
   multistepSelectors,
   Page,
+  Step,
 };
