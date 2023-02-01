@@ -7,7 +7,6 @@ const StepNickname = () => {
   const dispatch = useAppDispatch();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
     dispatch(multistepActions.setStep(Step.Email));
   };
 

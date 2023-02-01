@@ -4,7 +4,7 @@ import * as Styled from './StepPassword.styled';
 const StepPassword = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
+    console.log('Login');
   };
 
   return (
