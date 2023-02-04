@@ -15,14 +15,30 @@ export enum Step {
   Password = 'Password',
 }
 
+export enum Field {
+  Nickname = 'nickname',
+  Email = 'email',
+  Password = 'password',
+}
+
 export interface Multistep {
   readonly page: Page;
   readonly step: Step;
+  readonly formData: {
+    readonly [Field.Nickname]: string;
+    readonly [Field.Email]: string;
+    readonly [Field.Password]: string;
+  };
 }
 
 const initialState: Multistep = {
   page: Page.Login,
   step: Step.Nickname,
+  formData: {
+    [Field.Nickname]: '',
+    [Field.Email]: '',
+    [Field.Password]: '',
+  },
 };
 
 const multistepFormSlice = createSlice({
@@ -35,14 +51,35 @@ const multistepFormSlice = createSlice({
     setStep: (state, action: PayloadAction<Step>) => {
       state.step = action.payload;
     },
+    setNickname: (state, action: PayloadAction<string>) => {
+      state.formData[Field.Nickname] = action.payload;
+    },
+    setEmail: (state, action: PayloadAction<string>) => {
+      state.formData[Field.Email] = action.payload;
+    },
+    setPassword: (state, action: PayloadAction<string>) => {
+      state.formData[Field.Password] = action.payload;
+    },
   },
 });
 
 export const stateSelector = (state: RootState): Multistep => state.multistep;
 
+const fromDataSelector = createSelector(
+  stateSelector,
+  (state) => state.formData,
+);
+
 export const multistepSelectors = {
   page: createSelector(stateSelector, (state) => state.page),
   step: createSelector(stateSelector, (state) => state.step),
+  formData: fromDataSelector,
+  fieldValue: createSelector(
+    [fromDataSelector, (state, fieldName: Field) => fieldName],
+    (formData, fieldName) => {
+      return formData[fieldName];
+    },
+  ),
 };
 
 export const multistepActions = multistepFormSlice.actions;

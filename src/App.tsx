@@ -6,6 +6,7 @@ import Users from 'components/routes/Users';
 import NoMatch from 'components/routes/NoMatch';
 import { MultistepForm } from './app/multistep-form';
 import FormSwitcher from './components/FormSwitcher';
+import FormInfo from './components/FormInfo';
 
 const App: React.FC = () => (
   <div>
@@ -32,6 +33,7 @@ const App: React.FC = () => (
       </Routes>
     </div>
     <UserList />
+    <FormInfo />
     <FormSwitcher />
     <MultistepForm />
   </div>
