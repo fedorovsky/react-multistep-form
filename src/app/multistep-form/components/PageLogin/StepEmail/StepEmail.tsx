@@ -17,7 +17,12 @@ const StepEmail = () => {
   );
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    dispatch(multistepActions.setEmail(e.target.value));
+    dispatch(
+      multistepActions.setDataField({
+        field: Field.Email,
+        value: e.target.value,
+      }),
+    );
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

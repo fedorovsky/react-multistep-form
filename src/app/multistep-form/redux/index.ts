@@ -51,14 +51,11 @@ const multistepFormSlice = createSlice({
     setStep: (state, action: PayloadAction<Step>) => {
       state.step = action.payload;
     },
-    setNickname: (state, action: PayloadAction<string>) => {
-      state.formData[Field.Nickname] = action.payload;
-    },
-    setEmail: (state, action: PayloadAction<string>) => {
-      state.formData[Field.Email] = action.payload;
-    },
-    setPassword: (state, action: PayloadAction<string>) => {
-      state.formData[Field.Password] = action.payload;
+    setDataField: (
+      state,
+      action: PayloadAction<{ field: Field; value: string }>,
+    ) => {
+      state.formData[action.payload.field] = action.payload.value;
     },
   },
 });

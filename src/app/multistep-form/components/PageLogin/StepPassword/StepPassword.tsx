@@ -10,13 +10,20 @@ const StepPassword = () => {
   const valuePassword = useAppSelector((state) =>
     multistepSelectors.fieldValue(state, Field.Password),
   );
+
+  const formData = useAppSelector(multistepSelectors.formData);
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    dispatch(multistepActions.setPassword(e.target.value));
+    dispatch(
+      multistepActions.setDataField({
+        field: Field.Password,
+        value: e.target.value,
+      }),
+    );
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Login');
+    console.log('Login', formData);
   };
 
   return (

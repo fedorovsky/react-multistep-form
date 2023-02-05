@@ -16,7 +16,12 @@ const StepNickname = () => {
   );
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    dispatch(multistepActions.setNickname(e.target.value));
+    dispatch(
+      multistepActions.setDataField({
+        field: Field.Nickname,
+        value: e.target.value,
+      }),
+    );
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
