@@ -11,7 +11,7 @@ const FormInfo = () => {
 
   return (
     <Styled.Wrapper>
-      <div>{JSON.stringify(formData, null, 2)}</div>
+      <pre>{JSON.stringify(formData, null, 2)}</pre>
       <Nickname />
       <Email />
       <Password />

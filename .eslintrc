@@ -30,6 +30,7 @@
   "rules": {
     "no-console": "off",
     "@typescript-eslint/default-param-last": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
     "import/prefer-default-export": "off",
     "import/no-cycle": "off",
     "import/no-extraneous-dependencies": "off",
