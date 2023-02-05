@@ -33,7 +33,12 @@ const StepEmail = () => {
     <Styled.Wrapper>
       <h2>Step Email</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange={handleChange} value={valueEmail} />
+        <input
+          type="text"
+          onChange={handleChange}
+          value={valueEmail}
+          autoFocus
+        />
         <input type="submit" value="click" />
       </form>
     </Styled.Wrapper>

@@ -30,7 +30,12 @@ const StepPassword = () => {
     <Styled.Wrapper>
       <h2>Step Password</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange={handleChange} value={valuePassword} />
+        <input
+          type="text"
+          onChange={handleChange}
+          value={valuePassword}
+          autoFocus
+        />
         <input type="submit" value="click" />
       </form>
     </Styled.Wrapper>

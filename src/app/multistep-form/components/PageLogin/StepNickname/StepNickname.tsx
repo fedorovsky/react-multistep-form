@@ -33,7 +33,12 @@ const StepNickname = () => {
     <Styled.Wrapper>
       <h2>Step Nickname</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange={handleChange} value={valueNickname} />
+        <input
+          type="text"
+          onChange={handleChange}
+          value={valueNickname}
+          autoFocus
+        />
         <input type="submit" value="click" />
       </form>
     </Styled.Wrapper>
