@@ -1,20 +1,25 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import useAppDispatch from 'hooks/useAppDispatch';
-import { multistepActions, Step, Field } from '../../../redux';
+import useAppSelector from 'hooks/useAppSelector';
+import {
+  multistepActions,
+  Step,
+  Field,
+  multistepSelectors,
+} from '../../../redux';
 import * as Styled from './StepNickname.styled';
 
 type Inputs = {
   [Field.Nickname]: string;
 };
 
-const sleep = (ms: number) =>
-  new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-
 const StepNickname = () => {
   const dispatch = useAppDispatch();
+
+  const nicknamedValue = useAppSelector((state) =>
+    multistepSelectors.fieldValue(state, Field.Nickname),
+  );
 
   const {
     register,
@@ -23,18 +28,30 @@ const StepNickname = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const { onChange, onBlur, name, ref } = register(Field.Nickname, {
+    required: { value: true, message: 'Required' },
+    minLength: { value: 2, message: 'Min Length' },
+    maxLength: { value: 10, message: 'Max Length' },
+  });
+
   React.useEffect(() => {
     setFocus(Field.Nickname);
   }, [setFocus]);
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    dispatch(multistepActions.setStep(Step.Email)); // Next step => Email
+  const handleChangeInput: React.ChangeEventHandler<HTMLInputElement> = async (
+    event,
+  ) => {
     dispatch(
       multistepActions.setDataField({
         field: Field.Nickname,
-        value: data[Field.Nickname],
+        value: event.target.value,
       }),
     );
+    await onChange(event);
+  };
+
+  const onSubmit: SubmitHandler<Inputs> = async () => {
+    dispatch(multistepActions.setStep(Step.Email)); // Next step => Email
   };
 
   return (
@@ -43,11 +60,11 @@ const StepNickname = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"
-          {...register(Field.Nickname, {
-            required: { value: true, message: 'Required' },
-            minLength: { value: 2, message: 'Min Length' },
-            maxLength: { value: 10, message: 'Max Length' },
-          })}
+          name={name}
+          value={nicknamedValue}
+          ref={ref}
+          onBlur={onBlur}
+          onChange={handleChangeInput}
         />
         <input type="submit" value="click" />
         {errors[Field.Nickname] && (

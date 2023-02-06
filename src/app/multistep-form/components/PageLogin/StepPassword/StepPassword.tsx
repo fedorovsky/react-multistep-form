@@ -1,7 +1,7 @@
 import * as React from 'react';
-import useAppSelector from 'hooks/useAppSelector';
-import useAppDispatch from 'hooks/useAppDispatch';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import useAppDispatch from 'hooks/useAppDispatch';
+import useAppSelector from 'hooks/useAppSelector';
 import { Field, multistepActions, multistepSelectors } from '../../../redux';
 import * as Styled from './StepPassword.styled';
 
@@ -56,11 +56,11 @@ const StepPassword = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"
-          value={passwordValue}
-          onChange={handleChangeInput}
-          onBlur={onBlur}
           name={name}
+          value={passwordValue}
           ref={ref}
+          onBlur={onBlur}
+          onChange={handleChangeInput}
         />
         <input type="submit" value="click" disabled={formState.isSubmitting} />
         {formState.errors[Field.Password] && (
