@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import sleep from 'utils/sleep';
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 import {
@@ -21,17 +22,18 @@ const StepNickname = () => {
     multistepSelectors.fieldValue(state, Field.Nickname),
   );
 
-  const {
-    register,
-    handleSubmit,
-    setFocus,
-    formState: { errors },
-  } = useForm<Inputs>();
+  const { register, handleSubmit, setFocus, formState } = useForm<Inputs>();
 
   const { onChange, onBlur, name, ref } = register(Field.Nickname, {
     required: { value: true, message: 'Required' },
     minLength: { value: 2, message: 'Min Length' },
     maxLength: { value: 10, message: 'Max Length' },
+    validate: {
+      asyncNickname: async (value) => {
+        await sleep(2000);
+        return value === 'bill';
+      },
+    },
   });
 
   React.useEffect(() => {
@@ -50,7 +52,7 @@ const StepNickname = () => {
     await onChange(event);
   };
 
-  const onSubmit: SubmitHandler<Inputs> = async () => {
+  const onSubmit: SubmitHandler<Inputs> = () => {
     dispatch(multistepActions.setStep(Step.Email)); // Next step => Email
   };
 
@@ -66,11 +68,14 @@ const StepNickname = () => {
           onBlur={onBlur}
           onChange={handleChangeInput}
         />
-        <input type="submit" value="click" />
-        {errors[Field.Nickname] && (
+        <input type="submit" value="click" disabled={formState.isSubmitting} />
+        {formState.errors[Field.Nickname] && (
           <Styled.ErrorMessage>
-            {errors[Field.Nickname]?.message}
+            {formState.errors[Field.Nickname]?.message}
           </Styled.ErrorMessage>
+        )}
+        {formState.errors[Field.Nickname]?.type === 'asyncNickname' && (
+          <Styled.ErrorMessage>asyncNickname</Styled.ErrorMessage>
         )}
       </form>
     </Styled.Wrapper>

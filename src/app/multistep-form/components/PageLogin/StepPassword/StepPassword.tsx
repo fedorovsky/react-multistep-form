@@ -2,13 +2,9 @@ import * as React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
+import sleep from 'utils/sleep';
 import { Field, multistepActions, multistepSelectors } from '../../../redux';
 import * as Styled from './StepPassword.styled';
-
-const sleep = (ms: number) =>
-  new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
 
 type Inputs = {
   [Field.Password]: string;
